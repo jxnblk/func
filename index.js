@@ -34,8 +34,10 @@ const Root = props => h('div')({
   style: {
     fontFamily: 'SF Mono, Roboto Mono, Menlo, monospace',
     lineHeight: 1.5,
-    // fontSize: 10,
-    padding: 32
+    padding: 32,
+
+    // fontSize: 8,
+    // opacity: .25
   }
 })(
   Header(props),
@@ -88,6 +90,10 @@ const html = Root({
 
 window.onload = () => {
   console.log(html.outerHTML)
+  const vpm = document.createElement('meta')
+  vpm.name = 'viewport'
+  vpm.content = 'width=device-width, initial-scale=1'
+  document.head.appendChild(vpm)
   document.body.appendChild(html)
 }
 
