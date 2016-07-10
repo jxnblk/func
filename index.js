@@ -274,6 +274,10 @@ window.onload = () => {
     h('meta')({
       name: 'viewport',
       content: 'width=device-width, initial-scale=1'
+    })(),
+    h('link')({
+      rel: 'icon',
+      href: '/favicon.png'
     })()
   ]
   meta.forEach(m => document.head.appendChild(m))
