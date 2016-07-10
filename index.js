@@ -50,7 +50,7 @@ const avatar ='M64 0 L64 4 L76 4 L74 6 L94 14 L92 16 L104 20 L100 22 L106 28 L10
 const Root = props => div({
   style: {
     fontFamily: 'SF Mono, Roboto Mono, Menlo, monospace',
-    lineHeight: 1.5,
+    lineHeight: 1.75,
     padding: 32
   }
 })(
@@ -59,25 +59,45 @@ const Root = props => div({
   Projects(props)
 )
 
-const Header = props => h('header')({})(
+const Header = props => h('header')({
+  style: {
+    maxWidth: 1088,
+    marginBottom: 64
+  }
+})(
   svg({
     viewBox: '0 0 128 128',
     width: 48,
     height: 48,
     fill: 'currentcolor',
   })(avatar),
-  h1(props.title),
+  h1({
+    style: {
+    }
+  })(props.title),
   p({
     style: {
-      fontSize: '2em'
+      fontSize: '2em',
+      lineHeight: 1.5,
+      marginBottom: 0,
     }
-  })(props.subhead)
+  })(props.subhead),
+  p({})('Based in Brooklyn, NY')
 )
 
-const Projects = props => h('main')({})(
+const Projects = props => h('main')({
+  style: {
+    marginBottom: 128
+  }
+})(
+  h('h2')('Projects'),
   ul(
     ...props.projects.map(p => li(
-      a({ href: p.href })(p.text)
+      a({ href: p.href })(
+        h('b')(p.title),
+        ' ',
+        p.description
+      )
     ))
   )
 )
@@ -97,22 +117,166 @@ const html = Root({
     { href: '//twitter.com/writing', text: 'Writing' }
   ],
   projects: [
-    { href: '//jxnblk.com/rebass', text: 'Rebass' },
-    { href: '//basscss.com', text: 'Basscss' },
-    { href: '//jxnblk.com/writing', text: 'Writing' },
-    { href: '//jxnblk.com/colorable', text: 'Colorable' },
-    { href: '//geomicons.com', text: 'Geomicons' },
-    { href: '//jxnblk.com/react-geomicons', text: 'React Geomicons' },
-    { href: '//jxnblk.com/react-icons', text: 'SVG Icons in React' },
-    { href: '//jxnblk.com/paths', text: 'Paths' },
+    { href: '//jxnblk.com/rebass',
+      title: 'Rebass',
+      description: 'Configurable React UI components'
+    },
+    {
+      href: '//basscss.com',
+      title: 'Basscss',
+      description: 'Low-level CSS toolkit'
+    },
+    {
+      href: '//jxnblk.com/writing',
+      title: 'Writing',
+      description: 'Thoughts on design and development'
+    },
+    {
+      href: '//jxnblk.com/colorable',
+      title: 'Colorable',
+      description: 'Color palette contrast tester'
+    },
+    {
+      href: '//geomicons.com',
+      title: 'Geomicons',
+      description: 'Open source icons for the web'
+    },
+    {
+      href: '//jxnblk.com/react-geomicons',
+      title: 'React Geomicons',
+      description: 'React icon component for Geomicons Open'
+    },
+    {
+      href: '//jxnblk.com/react-icons',
+      title: 'SVG Icons in React',
+      description: 'How to create generative graphics in React'
+    },
+    {
+      href: '//jxnblk.com/paths',
+      title: 'Paths',
+      description: 'Edit SVGs in the browser'
+    },
+    {
+      href: '//jxnblk.com/gravitons',
+      title: 'Gravitons',
+      description: 'Virtually massless CSS layout microlibrary'
+    },
+    {
+      href: '//jxnblk.com/loading',
+      title: 'Loading...',
+      description: 'Animated SVG loading indicators'
+    },
+    {
+      href: '//jxnblk.com/shade',
+      title: 'Shade',
+      description: 'Mathematically-derived gradients'
+    },
+    {
+      href: '//jxnblk.com/reflexbox',
+      title: 'Reflexbox',
+      description: 'React flexbox layout and grid system'
+    },
+    {
+      href: '//jxnblk.com/gx',
+      title: 'Gx',
+      description: 'Minimal, responsive React grid system'
+    },
+    {
+      href: '//jxnblk.com/rgx',
+      title: 'Rgx',
+      description: 'Constraint-based React grid system'
+    },
+    {
+      href: '//jxnblk.com/fitter-happier-title',
+      title: 'Fitter Happier Text',
+      description: 'Performant, fully fluid headings'
+    },
+    {
+      href: '//jxnblk.com/react-fitter-happier-title',
+      title: 'React Fitter Happier Text',
+      description: 'React component for fully fluid headings'
+    },
+    {
+      href: '//jxnblk.com/Spectral',
+      title: 'Spectral',
+      description: 'Click the rainbow'
+    },
+    {
+      href: '//jxnblk.com/vhs',
+      title: 'VHS',
+      description: 'Post-future CSS animations'
+    },
+    {
+      href: '//mrsjxn.com',
+      title: 'MrsJxn',
+      description: 'Post-future beats'
+    },
+    {
+      href: '//jxnblk.com/skullcat',
+      title: 'Skullcat',
+      description: 'Avatar and web audio experiment'
+    },
+    {
+      href: '//jxnblk.com/work',
+      title: 'Work',
+      description: 'Professional work'
+    },
+    {
+      href: '//jxnblk.com/principles',
+      title: 'Principles',
+      description: 'Web design principles'
+    },
+    {
+      href: '//jxnblk.com/reading-list',
+      title: 'Reading List',
+      description: 'Recommended reading'
+    },
+    {
+      href: '//jxnblk.com/Ashley',
+      title: 'Ashley',
+      description: 'Readable Tumblr theme'
+    },
+    {
+      href: '//jxnblk.com/Heather',
+      title: 'Heather',
+      description: 'Hyperminimal Jekyll theme'
+    },
+    {
+      href: '//jxnblk.com/Twipster',
+      title: 'Twipster',
+      description: 'Simpler, readabler Twitter'
+    },
+    {
+      href: '//microbeats.cc',
+      title: 'Microbeats',
+      description: 'Beats created in under an hour'
+    },
+    {
+      href: '//jxnblk.com/gifolio',
+      title: 'Gifolio',
+      description: 'GIF portfolio'
+    },
+    {
+      href: '//jxnblk.com/papercraft',
+      title: 'Papercraft',
+      description: 'Hand-coded SVG lettering'
+    },
+    {
+      href: '//jxnblk.com/stepkit',
+      title: 'Stepkit',
+      description: 'Web audio step sequencer'
+    }
   ]
 })
 
 window.onload = () => {
-  const vpm = document.createElement('meta')
-  vpm.name = 'viewport'
-  vpm.content = 'width=device-width, initial-scale=1'
-  document.head.appendChild(vpm)
+  const meta = [
+    h('meta')({
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1'
+    })()
+  ]
+  meta.forEach(m => document.head.appendChild(m))
   document.body.appendChild(html)
 }
 
