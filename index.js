@@ -187,12 +187,12 @@ const html = Root({
       description: 'Constraint-based React grid system'
     },
     {
-      href: '//jxnblk.com/fitter-happier-title',
+      href: '//jxnblk.com/fitter-happier-text',
       title: 'Fitter Happier Text',
       description: 'Performant, fully fluid headings'
     },
     {
-      href: '//jxnblk.com/react-fitter-happier-title',
+      href: '//jxnblk.com/react-fitter-happier-text',
       title: 'React Fitter Happier Text',
       description: 'React component for fully fluid headings'
     },
