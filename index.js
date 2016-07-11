@@ -20,16 +20,18 @@ const applyProps = el => props => {
   return appendChildren(el)
 }
 
-const appendChildren = el => (...children) => {
-  children.map(c => c instanceof Element ? c : document.createTextNode(c))
-    .forEach(c => el.appendChild(c))
-  return el
-}
+const appendChildren = el => (...children) => children
+  .map(c => c instanceof Element ? c : document.createTextNode(c))
+  .reduce((a, c) => {
+    a.appendChild(c)
+    return a
+  }, el)
 
 const isProps = arg => (!(arg instanceof Element) && typeof arg === 'object')
 const applyPropsOrChildren = tag => (...args) => isProps(args[0])
   ? applyProps(document.createElement(tag))(args[0])
   : appendChildren(document.createElement(tag))(...args)
+
 const h = tag => applyPropsOrChildren(tag)
 
 const div = h('div')
@@ -59,6 +61,14 @@ const Root = props => div({
   Projects(props)
 )
 
+const subhead = p({
+  style: {
+    fontSize: '2em',
+    lineHeight: 1.5,
+    marginBottom: 0,
+  }
+})
+
 const Header = props => h('header')({
   style: {
     maxWidth: 1088,
@@ -71,18 +81,9 @@ const Header = props => h('header')({
     height: 48,
     fill: 'currentcolor',
   })(avatar),
-  h1({
-    style: {
-    }
-  })(props.title),
-  p({
-    style: {
-      fontSize: '2em',
-      lineHeight: 1.5,
-      marginBottom: 0,
-    }
-  })(props.subhead),
-  p({})('Based in Brooklyn, NY')
+  h1(props.title),
+  subhead(props.subhead),
+  p('Based in Brooklyn, NY')
 )
 
 const Projects = props => h('main')({
